@@ -27,4 +27,4 @@ for $filename.IO.lines -> $line {
     if $value == 0 { $count++ ; }
 }
 }
-say $count;
+say $count; # answer 1059

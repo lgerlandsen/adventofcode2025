@@ -38,4 +38,4 @@ for $filename.IO.lines -> $line {
     }
 }
 }
-say $count;
+say $count; # answer 6305
