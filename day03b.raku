@@ -28,4 +28,4 @@ for $filename.IO.lines -> $line {
     }
     $totaljolt+=$bank;
 }
-say "Total joltage=$totaljolt"; # 171846613143331
+say "Total joltage=$totaljolt";

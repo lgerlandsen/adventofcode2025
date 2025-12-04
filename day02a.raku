@@ -34,4 +34,4 @@ for $filename.IO.lines -> $line {
     }
     
 }
-say "Sum av alled id'er=$sumid"; # 41294979841
+say "Sum av alled id'er=$sumid"; 

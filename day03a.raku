@@ -17,4 +17,4 @@ for $filename.IO.lines -> $line {
 #    say "$line=$jolt";
     $totaljolt+=$jolt;
 }
-say "Total joltage=$totaljolt"; # 17324
+say "Total joltage=$totaljolt"; 

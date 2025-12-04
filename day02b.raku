@@ -52,4 +52,4 @@ for $filename.IO.lines -> $line {
     }
     
 }
-say "Sum av alled id'er=$sumid"; # 66500947346
+say "Sum av alled id'er=$sumid"; 
