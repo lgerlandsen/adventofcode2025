@@ -39,26 +39,25 @@ loop ( $i = 0; $i < @sorted.elems ; $i++ ) {
     my $a=@sorted[$i][0];
     my $b=@sorted[$i][1];
     $inserted=-1;
-    my $circuit;
     # trenger å rydde og effektivisere
     loop ( $j=0 ; $j < @circuits.elems ; $j++ ) {
-        my @circuit=@circuits[$j].cache;
-        @circuit=@circuit>>.List.flat;
-        if ($a) (elem) @circuit || ($b) (elem) @circuit {
-            if ($a) (elem) @circuit && ($b) (elem) @circuit { 
-                $inserted = $j;
-                last;
-                # both already inserted
-            } else {
-                if $inserted < 0 {
-                    $lastinserted=$i;
-                    @circuits[$j] = (@circuit, $a, $b)>>.List.flat.unique;
-                    $inserted=$j;
-                } else {
-                    @circuits[$inserted] = ( @circuits[$inserted], @circuits[$j] )>>.List.flat.unique;
-                    @circuits[$j]=();
-                }
-            }
+        if ($a) (elem) @circuits[$j].cache && ($b) (elem) @circuits[$j].cache { 
+            $inserted = $j;
+            last;
+            # both already inserted
+        } elsif $inserted < 0 &&  ($a) (elem) @circuits[$j] {
+            $lastinserted=$i;
+            @circuits[$j] = (@circuits[$j], $b)>>.List.flat;
+            $inserted=$j;
+        } elsif $inserted < 0 &&  ($b) (elem) @circuits[$j]  {
+            $lastinserted=$i;
+            @circuits[$j] = (@circuits[$j], $a )>>.List.flat;
+            $inserted=$j;
+        } elsif $inserted >= 0 && (($a) (elem) @circuits[$j] || ($b) (elem) @circuits[$j]) {
+            @circuits[$inserted] = ( @circuits[$inserted], @circuits[$j] )>>.List.flat.unique;
+            @circuits.splice($j,1);
+            # trekk fra en siden neste nå er en mindre enn den var
+            $j--
         }
     }
     if $inserted < 0 {
