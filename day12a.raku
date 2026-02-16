@@ -9,10 +9,10 @@ my @regions;
 
 my $packagelines = 0;
 my @package = [];
-for $filename.IO.lines -> $line { 
+for $filename.IO.lines -> $line {
     
     @lines.push($line);
-    if $line ~~ /^\d\:/ { 
+    if $line ~~ /^\d\:/ {
         # nexte thre lines package
         $packagelines = 3;
         next;
@@ -27,10 +27,10 @@ for $filename.IO.lines -> $line {
         next;
     }
     if $line ~~ /^\d+x\d+\:/ {
-        my ($region,$packagelist) = $line.split(": ");
-        my ($columns,$rows) = $region.split("x");
+        my ($region, $packagelist) = $line.split(": ");
+        my ($columns, $rows) = $region.split("x");
         my @numberofpackages = $packagelist.split(" ");
-        @regions.push(($columns,$rows,@numberofpackages));
+        @regions.push(($columns, $rows, @numberofpackages));
     }
 }
 
